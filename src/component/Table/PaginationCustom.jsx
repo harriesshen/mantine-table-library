@@ -8,7 +8,7 @@ import {
   PaginationPropTypes,
 } from './propType/PaginationPropsType';
 
-function PaginationCustom({ data, setPage, currentPage, pageSize }) {
+function PaginationCustom({ data, setPage, currentPage, pageSize, colspan }) {
   const totalPage = useMemo(
     () => Math.ceil(data.length / pageSize),
     [data.length, pageSize]
@@ -16,7 +16,7 @@ function PaginationCustom({ data, setPage, currentPage, pageSize }) {
   return (
     <tfoot>
       <tr>
-        <td colSpan={4} aria-label="pagination">
+        <td colSpan={colspan} aria-label="pagination">
           <Flex justify="center">
             <Pagination
               total={totalPage}

@@ -134,6 +134,7 @@ function TableCustom({
           setPage={setCurrentPage}
           currentPage={currentPage}
           pageSize={pageSizeRef.current}
+          colspan={columnKeys.length + (actionColumn && 1)}
         />
       )}
     </Table>
