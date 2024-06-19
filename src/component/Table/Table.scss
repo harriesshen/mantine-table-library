@@ -1,0 +1,16 @@
+@import "../../index.scss";
+
+#TableCustom{
+    .cursor{
+        cursor: pointer;
+    }
+    .tableAction{
+        border-top: 0.0625rem solid #dee2e6;
+        border-bottom: 0.0625rem solid #dee2e6;
+        display: flex;
+        gap: 10px;
+    }
+    .tableButton{
+
+    }
+}

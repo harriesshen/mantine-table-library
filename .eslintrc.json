@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "settings": {},
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": ["airbnb", "plugin:react/jsx-runtime", "prettier"],
+  "plugins": ["prettier", "react-hooks"],
+  "rules": {
+    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+    "react-hooks/exhaustive-deps": "warn" // 检查 effect 的依赖
+  }
+}
