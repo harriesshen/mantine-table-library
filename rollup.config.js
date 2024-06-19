@@ -31,7 +31,11 @@ export default [
         presets: ['@babel/env', '@babel/preset-react'],
       }),
       commonjs(),
-      postcss(),
+      postcss({
+        extract: true,
+        modules: true,
+        use: ['sass'],
+      }),
     ],
     external: ['react', 'react-dom'],
   },
