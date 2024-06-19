@@ -1,6 +1,6 @@
 {
   "name": "young-leader-component-library",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "CRUDTable reDesign",
   "type": "module",
   "main": "dist/index.js",
