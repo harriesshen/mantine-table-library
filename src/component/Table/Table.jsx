@@ -74,6 +74,9 @@ function TableCustom({
       setSortColumn({ key: orderColumn, direction: 'asc' });
   }, [orderColumn]);
 
+  useEffect(() => {
+    if (data.length > 0) originDataRef.current = data;
+  }, [data]);
   const sortedData = useMemo(() => {
     if (sortColumn.direction === 'none') return originDataRef.current;
     return orderBy(
@@ -81,7 +84,7 @@ function TableCustom({
       [sortColumn.key],
       [sortColumn.direction]
     );
-  }, [sortColumn.key, sortColumn.direction]);
+  }, [sortColumn.direction, sortColumn.key]);
 
   return (
     <Table id="TableCustom" captionSide="bottom">
