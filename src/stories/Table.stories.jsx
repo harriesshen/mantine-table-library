@@ -116,5 +116,19 @@ export const paginationTable = {
   args: {
     columns: Basic.args.columns,
     data: generateRandomData(20),
+    showPagination: true,
+    pageSize: 6,
+  },
+};
+
+export const orderPaginationActionTable = {
+  args: {
+    columns: Basic.args.columns,
+    data: generateRandomData(30),
+    showPagination: true,
+    pageSize: Math.floor(Math.random() * 10 + 1),
+    showEdit: true,
+    showDelete: true,
+    order: true,
   },
 };

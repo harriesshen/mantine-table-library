@@ -11,12 +11,15 @@
   "scripts": {
     "rollup": "rollup -c && npm version patch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_29c47b0bb1d5ff4"
   },
   "keywords": [
     "young-leader"
   ],
-  "author": "harries",
+  "author": {
+    "name": "harries"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",

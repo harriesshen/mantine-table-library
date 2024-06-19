@@ -23,7 +23,14 @@ import {
   BodyEditButtonDefaultProps,
   BodyEditButtonPropTypes,
 } from './propType/BodyPropsType';
+import PaginationCustom from './PaginationCustom';
 
+const getCurrentPageData = (data, currentPage, pageSize) => {
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const raw = data.slice(startIndex, endIndex);
+  return raw;
+};
 function TableCustom({
   columns,
   data,
@@ -49,8 +56,13 @@ function TableCustom({
   showCustom,
   customComponent,
   loading,
+  showPagination,
+  pageSize,
 }) {
   const [sortColumn, setSortColumn] = useState({ key: '', direction: 'none' }); // 點擊th的儲存
+  const [currentPage, setCurrentPage] = useState(1); // 當前頁碼
+  const pageSizeRef = useRef(pageSize); // 每頁出現幾筆資料
+
   const originDataRef = useRef(data);
   const actionColumn = useRef(showEdit || showDelete || showCustom);
   // columns的所有欄位key
@@ -70,9 +82,9 @@ function TableCustom({
       [sortColumn.direction]
     );
   }, [sortColumn.key, sortColumn.direction]);
-  console.log('columns', columns);
+
   return (
-    <Table id="TableCustom">
+    <Table id="TableCustom" captionSide="bottom">
       <Head
         columns={columns}
         theadBackgroundColor={theadBackgroundColor}
@@ -85,7 +97,11 @@ function TableCustom({
 
       <Body
         columns={columnKeys}
-        data={sortedData}
+        data={
+          !showPagination
+            ? sortedData
+            : getCurrentPageData(sortedData, currentPage, pageSizeRef.current)
+        }
         striped={striped}
         tbodyOddBackgroundColor={tbodyOddBackgroundColor}
         tbodyOddTextColor={tbodyOddTextColor}
@@ -112,6 +128,14 @@ function TableCustom({
           />
         )}
       </Body>
+      {showPagination && (
+        <PaginationCustom
+          data={sortedData}
+          setPage={setCurrentPage}
+          currentPage={currentPage}
+          pageSize={pageSizeRef.current}
+        />
+      )}
     </Table>
   );
 }
@@ -127,6 +151,8 @@ TableCustom.propTypes = {
   ...BodyDeleteButtonPropTypes,
   ...BodyCustomComponentPropTypes,
   loading: PropTypes.bool,
+  showPagination: PropTypes.bool,
+  pageSize: PropTypes.number,
 };
 
 TableCustom.defaultProps = {
@@ -140,6 +166,8 @@ TableCustom.defaultProps = {
   ...BodyDeleteButtonDefaultProps,
   ...BodyCustomComponentDefaultProps,
   loading: false,
+  showPagination: false,
+  pageSize: 5,
 };
 
 export default TableCustom;
