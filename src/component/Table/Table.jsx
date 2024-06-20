@@ -63,7 +63,7 @@ function TableCustom({
   const [currentPage, setCurrentPage] = useState(1); // 當前頁碼
   const pageSizeRef = useRef(pageSize); // 每頁出現幾筆資料
 
-  const originDataRef = useRef(data);
+  // const originDataRef = useRef(data);
   const actionColumn = useRef(showEdit || showDelete || showCustom);
   // columns的所有欄位key
   const columnKeys = useMemo(() => map(columns, (c) => c.key), [columns]);
@@ -74,17 +74,13 @@ function TableCustom({
       setSortColumn({ key: orderColumn, direction: 'asc' });
   }, [orderColumn]);
 
-  useEffect(() => {
-    if (data.length > 0) originDataRef.current = data;
-  }, [data]);
+  // useEffect(() => {
+  //   if (data.length > 0) originDataRef.current = data;
+  // }, [data]);
   const sortedData = useMemo(() => {
-    if (sortColumn.direction === 'none') return originDataRef.current;
-    return orderBy(
-      originDataRef.current,
-      [sortColumn.key],
-      [sortColumn.direction]
-    );
-  }, [sortColumn.direction, sortColumn.key]);
+    if (sortColumn.direction === 'none') return data;
+    return orderBy(data, [sortColumn.key], [sortColumn.direction]);
+  }, [data, sortColumn.direction, sortColumn.key]);
 
   return (
     <Table id="TableCustom">
@@ -126,7 +122,7 @@ function TableCustom({
         {showTotal && (
           <Total
             columns={columnKeys}
-            data={originDataRef.current}
+            data={data}
             currency={currency}
             actionColumn={actionColumn.current}
           />
