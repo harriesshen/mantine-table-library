@@ -1,6 +1,6 @@
 這是一個基於 mantine@6 所組成的 Table Component
 
-#### 傳送門 ：[[https://6672316d941f26940289fdc1-xguzxdqbhz.chromatic.com/]([https://6672316d941f26940289fdc1-xguzxdqbhz.chromatic.com/]())](<[https://6672316d941f26940289fdc1-xguzxdqbhz.chromatic.com/]([https://6672316d941f26940289fdc1-xguzxdqbhz.chromatic.com/]())>)
+#### 傳送門 ：<https://6672316d941f26940289fdc1-xguzxdqbhz.chromatic.com/ >
 
 表頭 columns( [{key:'',title:''}])
 
