@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import PeerDepsExternalPlugin from 'rollup-plugin-peer-deps-external';
+import autoprefixer from 'autoprefixer';
 
 export default [
   {
@@ -32,9 +33,11 @@ export default [
       }),
       commonjs(),
       postcss({
-        extract: true,
-        modules: true,
-        use: ['sass'],
+        // extract: true,
+        // modules: true,
+        // extensions: ['.scss'],
+        // use: ['sass'],
+        // plugins: [autoprefixer()],
       }),
     ],
     external: ['react', 'react-dom'],
