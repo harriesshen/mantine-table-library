@@ -1,5 +1,5 @@
 {
-  "name": "young-leader-component-library",
+  "name": "mantine-table-library",
   "version": "0.0.15",
   "description": "CRUDTable reDesign",
   "type": "module",
@@ -15,7 +15,8 @@
     "chromatic": "npx chromatic --project-token=chpt_29c47b0bb1d5ff4"
   },
   "keywords": [
-    "young-leader"
+    "mantine",
+    "table"
   ],
   "author": {
     "name": "harries"
