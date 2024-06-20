@@ -1,6 +1,6 @@
 {
   "name": "mantine-table-library",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "mantine-table",
   "type": "module",
   "main": "dist/index.js",
