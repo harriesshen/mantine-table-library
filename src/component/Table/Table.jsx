@@ -87,7 +87,7 @@ function TableCustom({
   }, [sortColumn.direction, sortColumn.key]);
 
   return (
-    <Table id="TableCustom" captionSide="bottom">
+    <Table id="TableCustom">
       <Head
         columns={columns}
         theadBackgroundColor={theadBackgroundColor}
@@ -128,6 +128,7 @@ function TableCustom({
             columns={columnKeys}
             data={originDataRef.current}
             currency={currency}
+            actionColumn={actionColumn.current}
           />
         )}
       </Body>

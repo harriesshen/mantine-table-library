@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Currency from '../../util/currency';
 import { tableDefaultProps, tablePropTypes } from './propType/TablePropsType';
 
-function Total({ columns, data, currency }) {
+function Total({ columns, data, currency, actionColumn }) {
   const totalList = useMemo(
     () =>
       columns.reduce((acc, key) => {
@@ -29,6 +29,7 @@ function Total({ columns, data, currency }) {
           {currency ? Currency(totalList[col]) : totalList[col]}
         </td>
       ))}
+      {actionColumn && <td aria-label="action" />}
     </tr>
   );
 }
@@ -36,11 +37,13 @@ function Total({ columns, data, currency }) {
 Total.propTypes = {
   ...tablePropTypes,
   currency: PropTypes.bool,
+  actionColumn: PropTypes.bool,
 };
 
 Total.defaultProps = {
   ...tableDefaultProps,
   currency: false,
+  actionColumn: false,
 };
 
 export default Total;
