@@ -57,14 +57,12 @@ function TableCustom({
   customComponent,
   loading,
   showPagination,
-  pageSize,
+  pageSize, // 每頁出現幾筆資料
 }) {
   const [sortColumn, setSortColumn] = useState({ key: '', direction: 'none' }); // 點擊th的儲存
   const [currentPage, setCurrentPage] = useState(1); // 當前頁碼
-  const pageSizeRef = useRef(pageSize); // 每頁出現幾筆資料
 
-  // const originDataRef = useRef(data);
-  const actionColumn = useRef(showEdit || showDelete || showCustom);
+  const actionColumn = showEdit || showDelete || showCustom;
   // columns的所有欄位key
   const columnKeys = useMemo(() => map(columns, (c) => c.key), [columns]);
 
@@ -74,9 +72,6 @@ function TableCustom({
       setSortColumn({ key: orderColumn, direction: 'asc' });
   }, [orderColumn]);
 
-  // useEffect(() => {
-  //   if (data.length > 0) originDataRef.current = data;
-  // }, [data]);
   const sortedData = useMemo(() => {
     if (sortColumn.direction === 'none') return data;
     return orderBy(data, [sortColumn.key], [sortColumn.direction]);
@@ -91,7 +86,7 @@ function TableCustom({
         order={order}
         setSortColumn={setSortColumn}
         sortColumn={sortColumn}
-        actionColumn={actionColumn.current}
+        actionColumn={actionColumn}
       />
 
       <Body
@@ -99,7 +94,7 @@ function TableCustom({
         data={
           !showPagination
             ? sortedData
-            : getCurrentPageData(sortedData, currentPage, pageSizeRef.current)
+            : getCurrentPageData(sortedData, currentPage, pageSize)
         }
         striped={striped}
         tbodyOddBackgroundColor={tbodyOddBackgroundColor}
@@ -124,7 +119,7 @@ function TableCustom({
             columns={columnKeys}
             data={data}
             currency={currency}
-            actionColumn={actionColumn.current}
+            actionColumn={actionColumn}
           />
         )}
       </Body>
@@ -133,7 +128,7 @@ function TableCustom({
           data={sortedData}
           setPage={setCurrentPage}
           currentPage={currentPage}
-          pageSize={pageSizeRef.current}
+          pageSize={pageSize}
           colspan={columnKeys.length + (actionColumn && 1)}
         />
       )}
